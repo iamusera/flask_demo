@@ -1,0 +1,52 @@
+version: 1
+formatters:
+  proj_format:
+    format: "[%(asctime)s] [%(filename)s[line:%(lineno)d]] [%(levelname)s]: %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: proj_format
+
+  exception:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: ERROR
+    formatter: proj_format
+    filename: exception.log
+    when: D
+    interval: 1
+    backupCount: 10
+    encoding: utf8
+
+  flask:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
+    formatter: proj_format
+    filename: flask.log
+    when: D
+    interval: 1
+    backupCount: 10
+    encoding: utf8
+
+  sqlalchemy:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
+    formatter: proj_format
+    filename: sql.log
+    when: D
+    interval: 1
+    backupCount: 10
+    encoding: utf8
+
+loggers:
+  flask_log:
+    level: INFO
+    handlers: [flask, exception]
+    propagate: no
+
+  sqlalchemy.engine:
+    level: ERROR
+    handlers: [sqlalchemy]
+    propagate: no

@@ -1,0 +1,20 @@
+base:
+  flask:
+    host: 0.0.0.0
+    port: 8000
+  database:
+    host: 192.168.0.18
+    port: 1521
+    service: orcl
+    username: dss
+    password: dss
+    schema: dss
+    echo: True
+    modify: False
+    pool_size: 5
+    max_overflow: 5
+    pool_recycle: 500
+    pool_timeout: 600
+log:
+  ./log
+extra:
