@@ -1,2 +1,2 @@
-from .api_exception import APIException
+from .api_exception import ApiException
 from .err_code import *

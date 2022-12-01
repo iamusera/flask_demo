@@ -4,7 +4,7 @@ from flask import request
 from werkzeug.exceptions import HTTPException
 
 
-class APIException(HTTPException):
+class ApiException(HTTPException):
     code = 500
     msg = 'sorry，internal error'
     data = ''
@@ -17,7 +17,7 @@ class APIException(HTTPException):
             self.msg = msg
         if data:
             self.data = data
-        super(APIException, self).__init__(msg, None)
+        super(ApiException, self).__init__(msg, None)
 
     def get_body(self, environ=None, scop=None):
         body = dict(

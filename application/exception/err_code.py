@@ -1,31 +1,31 @@
-from application.exception import APIException
+from application.exception import ApiException
 
 
-class ServerError(APIException):
+class ServerError(ApiException):
     code = 500
     msg = "server is invallid"
     data = ''
 
 
-class ClientTypeError(APIException):
+class ClientTypeError(ApiException):
     code = 400
     msg = "client is invallid"
     data = ''
 
 
-class ParameterException(APIException):
+class ParameterException(ApiException):
     code = 400
     msg = 'invalid parameter'
     data = ''
 
 
-class AuthFailed(APIException):
+class AuthFailed(ApiException):
     code = 401
     msg = 'invalid parameter'
     data = ''
 
 
-class ValError(APIException):
+class ValError(ApiException):
     code = 404
     msg = 'invalid parameter'
     data = ''

@@ -30,6 +30,26 @@ handlers:
     backupCount: 10
     encoding: utf8
 
+  request:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
+    formatter: proj_format
+    filename: request.log
+    when: D
+    interval: 1
+    backupCount: 2
+    encoding: utf8
+
+  response:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
+    formatter: proj_format
+    filename: response.log
+    when: D
+    interval: 1
+    backupCount: 2
+    encoding: utf8
+
   sqlalchemy:
     class: logging.handlers.TimedRotatingFileHandler
     level: INFO
@@ -44,6 +64,16 @@ loggers:
   flask_log:
     level: INFO
     handlers: [flask, exception]
+    propagate: no
+
+  record_request:
+    level: INFO
+    handlers: [request]
+    propagate: no
+
+  record_response:
+    level: INFO
+    handlers: [response]
     propagate: no
 
   sqlalchemy.engine:
