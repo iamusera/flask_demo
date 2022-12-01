@@ -1,9 +1,10 @@
 import os
 from flask import Flask
 
-from app.configs import dev_config, config
-from app.extensions import init_plugs
-from app.view import init_view
+from application.configs import dev_config, config
+from application.extensions import init_plugs
+from application.middleware import global_exception_handler
+from application.view import init_view
 
 
 def create_app(config_name=None):
@@ -21,5 +22,8 @@ def create_app(config_name=None):
 
     # 注册路由
     init_view(app)
+
+    # 注册异常处理
+    global_exception_handler(app)
 
     return app

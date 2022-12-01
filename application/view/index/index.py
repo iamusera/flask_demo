@@ -8,5 +8,6 @@ logger = logging.getLogger('flask_log')
 
 @index_bp.route('/')
 def index():
+    1/0
     logger.info('ab1111c')
-    return 'ok'
+    return 123

@@ -1,8 +1,8 @@
 import logging
 import os
 
-from app.common.utils import load_yaml
-from app.common.utils.encrypt import decrypt
+from application.common.utils import load_yaml
+from application.common.utils.encrypt import decrypt
 
 
 class DevelopmentConfig:

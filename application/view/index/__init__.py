@@ -1,4 +1,4 @@
-from app.view.index.index import index_bp
+from application.view.index.index import index_bp
 
 
 def register_index_views(app):
