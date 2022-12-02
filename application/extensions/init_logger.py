@@ -36,7 +36,6 @@ class LogTimedRotatingFileHandler(TimedRotatingFileHandler):
             frame = frame.f_back
             depth += 1
         logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
-        print(logger)
         logger.remove(trace)
 
 
