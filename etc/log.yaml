@@ -6,58 +6,59 @@ formatters:
 
 handlers:
   console:
-    class: logging.StreamHandler
+    class: application.extensions.InterceptHandler
     level: INFO
     formatter: proj_format
 
   exception:
-    class: logging.handlers.TimedRotatingFileHandler
+#    class: logging.handlers.TimedRotatingFileHandler
+    class: application.extensions.LogTimedRotatingFileHandler
     level: ERROR
     formatter: proj_format
     filename: exception.log
     when: D
     interval: 1
-    backupCount: 10
+    backupCount: 7
     encoding: utf8
 
   flask:
-    class: logging.handlers.TimedRotatingFileHandler
+    class: application.extensions.LogTimedRotatingFileHandler
     level: INFO
     formatter: proj_format
     filename: flask.log
     when: D
     interval: 1
-    backupCount: 10
+    backupCount: 7
     encoding: utf8
 
   request:
-    class: logging.handlers.TimedRotatingFileHandler
+    class: application.extensions.LogTimedRotatingFileHandler
     level: INFO
     formatter: proj_format
     filename: request.log
     when: D
     interval: 1
-    backupCount: 2
+    backupCount: 7
     encoding: utf8
 
   response:
-    class: logging.handlers.TimedRotatingFileHandler
+    class: application.extensions.LogTimedRotatingFileHandler
     level: INFO
     formatter: proj_format
     filename: response.log
     when: D
     interval: 1
-    backupCount: 2
+    backupCount: 7
     encoding: utf8
 
   sqlalchemy:
-    class: logging.handlers.TimedRotatingFileHandler
+    class: application.extensions.LogTimedRotatingFileHandler
     level: INFO
     formatter: proj_format
     filename: sql.log
     when: D
     interval: 1
-    backupCount: 10
+    backupCount: 7
     encoding: utf8
 
 loggers:

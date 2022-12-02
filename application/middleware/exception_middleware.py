@@ -13,7 +13,7 @@ def global_exception_handler(app):
         if isinstance(e, ApiException):
             return e
         if isinstance(e, HTTPException):
-            logger.info(e, exc_info=True)
+            logger.error(e, exc_info=True)
             code = e.code
             msg = e.description
             return ApiException(code=code, msg=msg)
