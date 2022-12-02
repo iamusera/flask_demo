@@ -6,7 +6,7 @@ formatters:
 
 handlers:
   console:
-    class: application.extensions.InterceptHandler
+    class: logging.StreamHandler
     level: INFO
     formatter: proj_format
 
