@@ -5,7 +5,6 @@ from pathlib import Path
 import logging
 import logging.config
 import yaml
-from collections import defaultdict
 from loguru import logger
 from logging.handlers import TimedRotatingFileHandler
 
