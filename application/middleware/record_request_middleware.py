@@ -14,6 +14,6 @@ def record_request(app):
     mimetype: {request.mimetype}
     method: {request.method}
     args: {dict(request.args)}
-    json: {request.get_json()}
+    json: {request.get_json() if request.is_json else {}}
         """
         logger.info(d)
