@@ -9,6 +9,7 @@ logger = logging.getLogger('flask_log')
 def global_exception_handler(app):
     @app.errorhandler(Exception)
     def framework_error(e):
+        """ 全局返回json类型异常 """
         if isinstance(e, ApiException):
             return e
         if isinstance(e, HTTPException):
