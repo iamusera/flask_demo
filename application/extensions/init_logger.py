@@ -23,6 +23,7 @@ class LogTimedRotatingFileHandler(TimedRotatingFileHandler):
             level=record.levelname.upper(),
         )
         return trace
+
     def emit(self, record):
         trace = self.get_out_logger(record)
         try:
@@ -38,11 +39,8 @@ class LogTimedRotatingFileHandler(TimedRotatingFileHandler):
         print(logger)
         logger.remove(trace)
 
+
 class Log:
-    """
-
-    """
-
     def __init__(self):
         self._log_cfg = None
 
@@ -53,8 +51,6 @@ class Log:
                 self._log_cfg = yaml.safe_load(f)
                 self.set_log_path(app)
                 try:
-                    # self.set_handler()
-                    # logging.basicConfig(handlers=[InterceptHandler()], level=0)
                     logging.config.dictConfig(self._log_cfg)
                 except Exception as e:
                     print(e)
@@ -72,19 +68,6 @@ class Log:
     def get_logger(self, logger_name):
         return logging.getLogger(logger_name)
 
-    def set_handler(self):
-        loggers = self._log_cfg.get('loggers', defaultdict)
-        handlers = self._log_cfg.get('handlers', defaultdict)
-        for name, config in loggers.items():
-            logger = logging.getLogger(name)
-            handler_ = config.get('handlers', defaultdict)
-            for hand in handler_:
-                handler_class = handlers.get(hand)
-                print(1)
-
 
 def init_log(app):
-    try:
-        Log().init(app)
-    except Exception as e:
-        print(traceback.format_exc())
+    Log().init(app)

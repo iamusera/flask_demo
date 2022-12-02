@@ -1,6 +1,6 @@
 from flask import Flask
 
-from .init_logger import init_log, LogTimedRotatingFileHandler, InterceptHandler
+from .init_logger import init_log, LogTimedRotatingFileHandler
 from .init_sqlalchemy import db, init_databases
 
 
