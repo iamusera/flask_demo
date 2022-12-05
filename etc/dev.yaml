@@ -15,6 +15,19 @@ base:
     max_overflow: 5
     pool_recycle: 500
     pool_timeout: 600
+  writeDb: # 测试 新华
+    host: 192.168.0.18
+    port: 1521
+    service: orcl
+    username: dm
+    password: dm
+    schema: dm
+    echo: True
+    modify: False
+    pool_size: 5
+    max_overflow: 5
+    pool_recycle: 500
+    pool_timeout: 600
 log:
   ./log
 extra:

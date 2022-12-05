@@ -20,7 +20,7 @@ class DevelopmentConfig:
             if key is not None:
                 cfg["base"]["database"]["username"] = decrypt(cfg["base"]["database"]["username"], key)
                 cfg["base"]["database"]["password"] = decrypt(cfg["base"]["database"]["password"], key)
-
+    # 数据库配置
     SQLALCHEMY_DATABASE_URI = "oracle://{username}:{password}@{host}:{port}/{service}".format(**db_cfg)
     SQLALCHEMY_ECHO = db_cfg["echo"]
     SQLALCHEMY_POOL_SIZE = db_cfg["pool_size"]
@@ -28,6 +28,12 @@ class DevelopmentConfig:
     SQLALCHEMY_POOL_RECYCLE = db_cfg["pool_recycle"]
     SQLALCHEMY_POOL_TIMEOUT = db_cfg["pool_timeout"]
     SQLALCHEMY_TRACK_MODIFICATIONS = db_cfg["modify"]
+    # 读写分离
+    write_cfg = cfg["base"]["writeDb"]
+    SQLALCHEMY_BINDS = {
+        "read": "oracle://{username}:{password}@{host}:{port}/{service}".format(**db_cfg),
+        "write": "oracle://{username}:{password}@{host}:{port}/{service}".format(**write_cfg),
+    }
 
     # 默认日志等级
     LOG_LEVEL = logging.INFO
