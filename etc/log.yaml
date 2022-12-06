@@ -12,7 +12,7 @@ handlers:
 
   exception:
 #    class: logging.handlers.TimedRotatingFileHandler
-    class: application.extensions.LogTimedRotatingFileHandler
+    class: logging.handlers.TimedRotatingFileHandler
     level: ERROR
     formatter: proj_format
     filename: exception.log
@@ -22,7 +22,7 @@ handlers:
     encoding: utf8
 
   flask:
-    class: application.extensions.LogTimedRotatingFileHandler
+    class: logging.handlers.TimedRotatingFileHandler
     level: INFO
     formatter: proj_format
     filename: flask.log
@@ -32,7 +32,7 @@ handlers:
     encoding: utf8
 
   request:
-    class: application.extensions.LogTimedRotatingFileHandler
+    class: logging.handlers.TimedRotatingFileHandler
     level: INFO
     formatter: proj_format
     filename: request.log
@@ -42,7 +42,7 @@ handlers:
     encoding: utf8
 
   response:
-    class: application.extensions.LogTimedRotatingFileHandler
+    class: logging.handlers.TimedRotatingFileHandler
     level: INFO
     formatter: proj_format
     filename: response.log
@@ -52,7 +52,7 @@ handlers:
     encoding: utf8
 
   sqlalchemy:
-    class: application.extensions.LogTimedRotatingFileHandler
+    class: logging.handlers.TimedRotatingFileHandler
     level: INFO
     formatter: proj_format
     filename: sql.log
