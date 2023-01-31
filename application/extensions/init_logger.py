@@ -9,34 +9,34 @@ from loguru import logger
 from logging.handlers import TimedRotatingFileHandler
 
 
-# class LogTimedRotatingFileHandler(TimedRotatingFileHandler):
-# 
-#     def get_out_logger(self, record):
-#         logger.remove()
-#         trace = logger.add(
-#             str(self.baseFilename),
-#             rotation=self.interval,  # 换算成天
-#             retention=self.backupCount,
-#             enqueue=True,
-#             colorize=False,
-#             backtrace=True,
-#             level=record.levelname.upper(),
-#         )
-#         return trace
-# 
-#     def emit(self, record):
-#         trace = self.get_out_logger(record)
-#         try:
-#             level = logger.level(record.levelname).name
-#         except ValueError:
-#             level = record.levelno
-# 
-#         frame, depth = logging.currentframe(), 2
-#         while frame.f_code.co_filename == logging.__file__:
-#             frame = frame.f_back
-#             depth += 1
-#         logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
-#         logger.remove(trace)
+class LogTimedRotatingFileHandler(TimedRotatingFileHandler):
+
+    def get_out_logger(self, record):
+        logger.remove()
+        trace = logger.add(
+            str(self.baseFilename),
+            rotation=self.interval,  # 换算成天
+            retention=self.backupCount,
+            enqueue=True,
+            colorize=False,
+            backtrace=True,
+            level=record.levelname.upper(),
+        )
+        return trace
+
+    def emit(self, record):
+        trace = self.get_out_logger(record)
+        try:
+            level = logger.level(record.levelname).name
+        except ValueError:
+            level = record.levelno
+
+        frame, depth = logging.currentframe(), 2
+        while frame.f_code.co_filename == logging.__file__:
+            frame = frame.f_back
+            depth += 1
+        logger.opt(depth=depth, exception=record.exc_info).log(level, record.getMessage())
+        logger.remove(trace)
 
 
 class Log:

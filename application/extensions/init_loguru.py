@@ -1,4 +1,4 @@
-#* utf8
+# * utf8
 import logging
 import logging.config
 import os
@@ -11,7 +11,6 @@ import yaml
 from loguru import logger
 from loguru._logger import Logger
 from pydantic import BaseSettings
-
 
 # class LoggingLevel(str, Enum):
 #     """
@@ -135,18 +134,16 @@ import os.path
 from loguru import logger
 
 
-# 1.🎖️先声明一个类继承logging.Handler(制作一件品如的衣服)
 class InterceptTimedRotatingFileHandler(logging.Handler):
     """
     自定义反射时间回滚日志记录器
     """
 
     def __init__(self, filename, when='d', interval=1, backupCount=15, encoding="utf-8", delay=False, utc=False,
-                atTime=None, logging_levels="all"):
+                 atTime=None, logging_levels="all"):
         super(InterceptTimedRotatingFileHandler, self).__init__()
         filename = os.path.abspath(filename)
         when = when.lower()
-        # 2.🎖️需要本地用不同的文件名做为不同日志的筛选器
         self.logger_ = logger.bind(sime=filename)
         self.filename = filename
         key_map = {
@@ -171,14 +168,12 @@ class InterceptTimedRotatingFileHandler(logging.Handler):
         elif when == "w":
             time_format = "{time:%Y-%m-%d}"
         level_keys = ["info"]
-        # 3.🎖️构建一个筛选器
         levels = {
             # "debug": lambda x: "DEBUG" == x['level'].name.upper() and x['extra'].get('sime') == filename,
             "error": lambda x: "ERROR" == x['level'].name.upper() and x['extra'].get('sime') == filename,
             "info": lambda x: "INFO" == x['level'].name.upper() and x['extra'].get('sime') == filename,
             # "warning": lambda x: "WARNING" == x['level'].name.upper() and x['extra'].get('sime') == filename
         }
-        # 4. 🎖️根据输出构建筛选器
         if isinstance(logging_levels, str):
             if logging_levels.lower() == "all":
                 level_keys = levels.keys()
@@ -188,7 +183,6 @@ class InterceptTimedRotatingFileHandler(logging.Handler):
             level_keys = logging_levels
         for k, f in {_: levels[_] for _ in level_keys}.items():
 
-            # 5.🎖️为防止重复添加sink，而重复写入日志，需要判断是否已经装载了对应sink，防止其使用秘技：反复横跳。
             filename_fmt = filename.replace(".log", "_%s_%s.log" % (time_format, k))
             # noinspection PyUnresolvedReferences,PyProtectedMember
             file_key = {_._name: han_id for han_id, _ in self.logger_._core.handlers.items()}
@@ -215,7 +209,6 @@ class InterceptTimedRotatingFileHandler(logging.Handler):
             level = record.levelno
 
         frame, depth = logging.currentframe(), 2
-        # 6.🎖️把当前帧的栈深度回到发生异常的堆栈深度，不然就是当前帧发生异常而无法回溯
         while frame.f_code.co_filename == logging.__file__:
             frame = frame.f_back
             depth += 1
@@ -249,6 +242,7 @@ class Log:
 
     def get_logger(self, logger_name):
         return logging.getLogger(logger_name)
+
 
 def init_loguru(app):
     Log().init(app)

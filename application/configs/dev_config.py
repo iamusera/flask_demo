@@ -31,7 +31,7 @@ class DevelopmentConfig:
     # 读写分离
     write_cfg = cfg["base"]["writeDb"]
     SQLALCHEMY_BINDS = {
-        "read": "oracle://{username}:{password}@{host}:{port}/{service}".format(**db_cfg),
+        "read": "oracle://{username}:{password}@{host}:{port}/{service}".format(**db_cfg),  #todo: 重复的配置
         "write": "oracle://{username}:{password}@{host}:{port}/{service}".format(**write_cfg),
     }
 
