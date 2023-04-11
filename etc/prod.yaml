@@ -2,19 +2,41 @@ base:
   flask:
     host: 0.0.0.0
     port: 8000
+  redis:
+    broker: redis://:biz@192.168.200.213:6379/1
+    backend: redis://:biz@192.168.200.213:6379/1
+    timezone: Asia/Shanghai
   database:
-    host: 192.168.0.18
-    port: 1521
-    service: orcl
-    username: dss
-    password: dss
-    schema: dss
-    echo: True
+    host: 192.168.200.213
+    port: 3307
+    username: aFdz/2pHX1SiwvgOxDt3Yg==
+    password: dUX3CmXUjWi2PMO4uhaOew==
+    schema: care_biz_db
+    echo: False
     modify: False
     pool_size: 5
     max_overflow: 5
     pool_recycle: 500
     pool_timeout: 600
-log:
-  ./log
 extra:
+  db_security_key: ==
+  db_username_encrypted: True
+  db_password_encrypted: True
+log:
+  info:
+    file: log/info.log
+    level: INFO
+    retention: 7 days
+    rotation: "00:00"
+    enqueue: True
+    colorize: True
+    format: <white><b>{time:YYYY-MM-DD :mm:ss}</b></white> - {level} - {file} - {line} - <green><b>{message}</b></green>
+
+  error:
+    file: log/error.log
+    level: ERROR
+    retention: 7 days
+    rotation: "00:00"
+    enqueue: True
+    colorize: True
+    format: <white><b>{time:YYYY-MM-DD :mm:ss}</b></white> - {level} - {file} - {line} - <green><b>{message}</b></green>

@@ -1,13 +1,13 @@
 import os
 import multiprocessing
-
+# 31004
 bind = '0.0.0.0:8000'
 backlog = 512
 chdir = os.path.dirname(os.path.abspath(__file__))
 timeout = 30
-worker_class = 'gevent'
+worker_class = 'gthread'
 
-workers = multiprocessing.cpu_count() * 2 + 1
+workers = 2
 threads = 2
 loglevel = 'info'
 access_log_format = '%(t)s %(p)s %(h)s "%(r)s" %(s)s %(L)s %(b)s %(f)s" "%(a)s"'

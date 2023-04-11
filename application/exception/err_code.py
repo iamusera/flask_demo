@@ -2,7 +2,7 @@ from application.exception import ApiException
 
 
 class ServerError(ApiException):
-    code = 500
+    code = '0'
     msg = "server is invallid"
     data = ''
 

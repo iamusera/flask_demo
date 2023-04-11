@@ -5,8 +5,8 @@ from werkzeug.exceptions import HTTPException
 
 
 class ApiException(HTTPException):
-    code = 500
-    msg = 'sorry，internal error'
+    code = '0'
+    msg = 'internal error'
     data = ''
 
     # 自定义需要返回的信息，在初始化完成并交给父类
@@ -23,7 +23,7 @@ class ApiException(HTTPException):
         body = dict(
             code=self.code,
             msg=self.msg,
-            request=request.method + ' ' + self.get_url_no_parm(),
+            # request=request.method + ' ' + self.get_url_no_parm(),
             data=self.data
         )
         # sort_keys 取消排序规则，ensure_ascii 中文显示
